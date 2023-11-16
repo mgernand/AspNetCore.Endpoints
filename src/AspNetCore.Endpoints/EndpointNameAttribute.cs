@@ -4,10 +4,10 @@
 	using JetBrains.Annotations;
 
 	/// <summary>
-	///		An attribute to override the default route handler of an endpoint.
+	///		An attribute to override the default endpoint name.
 	/// </summary>
 	[PublicAPI]
-	[AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
+	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
 	public sealed class EndpointNameAttribute : Attribute
 	{
 		/// <summary>
@@ -16,12 +16,12 @@
 		/// <param name="handlerName"></param>
 		public EndpointNameAttribute(string handlerName)
 		{
-			this.HandlerName = handlerName;
+			this.Name = handlerName;
 		}
 
 		/// <summary>
-		///		Gets the handler name.
+		///		Gets the endpoint name.
 		/// </summary>
-		public string HandlerName { get; }
+		public string Name { get; }
 	}
 }

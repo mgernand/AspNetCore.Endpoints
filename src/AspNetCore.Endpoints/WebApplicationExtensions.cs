@@ -38,32 +38,24 @@
 
 			foreach (IGrouping<EndpointGroup, EndpointBase> grouping in endpoints.GroupBy(x => x.Group))
 			{
-				//RouteGroupBuilder groupEndpoints = app.MapGroup(grouping.Key);
+				RouteGroupBuilder groupEndpoints = app.MapGroup(grouping.Key);
 				foreach (EndpointBase endpoint in grouping)
 				{
-					endpoint.Map(app);
+					endpoint.Map(groupEndpoints);
 				}
 			}
 
 			return app;
 		}
 
-		/// <summary>
-		///		Maps the given endpoint group with default settings.
-		/// </summary>
-		/// <param name="app"></param>
-		/// <param name="group"></param>
-		/// <returns></returns>
 		private static RouteGroupBuilder MapGroup(this WebApplication app, EndpointGroup group)
 		{
 			ArgumentNullException.ThrowIfNull(group);
 
-			string groupName = group.Name.ToLowerInvariant();
-
 			return app
-				.MapGroup($"/api/{groupName}")
-				.WithGroupName(groupName)
-				.WithTags(groupName);
+				.MapGroup($"/api/{group.Name.ToLowerInvariant()}")
+				.WithTags(group.Name)
+				.WithOpenApi();
 		}
 	}
 }

@@ -121,7 +121,11 @@
 
 		private static string GetEndpointName(this MethodInfo method)
 		{
-			string name = method.GetCustomAttribute<EndpointNameAttribute>()?.HandlerName ?? method.Name;
+			Type declaringType = method.DeclaringType;
+
+			ArgumentNullException.ThrowIfNull(declaringType);
+
+			string name = declaringType.GetCustomAttribute<EndpointNameAttribute>()?.Name ?? declaringType.Name;
 			return name;
 		}
 	}

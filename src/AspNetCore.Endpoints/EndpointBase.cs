@@ -19,12 +19,12 @@
 		{
 			Type groupType = this.GetType();
 
-			string groupName = groupType.GetCustomAttribute<RouteGroupAttribute>()?.GroupName.Trim() ?? 
+			string groupName = groupType.GetCustomAttribute<EndpointGroupAttribute>()?.GroupName.Trim() ?? 
 			                   groupType.Namespace?.Split('.', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Last();
 
 			ArgumentException.ThrowIfNullOrWhiteSpace(groupName);
 
-			this.Group = new EndpointGroup(groupName.ToLowerInvariant());
+			this.Group = new EndpointGroup(groupName);
 		}
 
 		/// <summary>

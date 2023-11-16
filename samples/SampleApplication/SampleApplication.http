@@ -1,6 +1,11 @@
 @SampleApplication_HostAddress = https://localhost:5001/api
 
-GET {{SampleApplication_HostAddress}}/weather_forecast/
+GET {{SampleApplication_HostAddress}}/weather_forecast
+Accept: application/json
+
+###
+
+GET {{SampleApplication_HostAddress}}/customers
 Accept: application/json
 
 ###

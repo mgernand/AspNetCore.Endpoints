@@ -1,4 +1,6 @@
-﻿namespace MadEyeMatt.AspNetCore.Endpoints
+﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
+namespace MadEyeMatt.AspNetCore.Endpoints
 {
 	using System;
 	using JetBrains.Annotations;
@@ -36,7 +38,7 @@
 		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
-			return ReferenceEquals(this, obj) || obj is EndpointGroup other && Equals(other);
+			return ReferenceEquals(this, obj) || obj is EndpointGroup other && this.Equals(other);
 		}
 
 		/// <inheritdoc />

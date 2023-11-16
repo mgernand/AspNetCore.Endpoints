@@ -4,8 +4,9 @@
 	using MadEyeMatt.AspNetCore.Endpoints;
 
 	[PublicAPI]
-	[RouteGroup("weather_forecast")]
-	public sealed class GetWeatherForecast : EndpointBase
+	[EndpointGroup("weather_forecast")]
+	[EndpointName("SomeOtherName")]
+	public sealed class GetWeatherForecasts : EndpointBase
 	{
 		private string[] summaries = new string[]
 		{
@@ -15,10 +16,9 @@
 		/// <inheritdoc />
 		public override void Map(IEndpointRouteBuilder endpoints)
 		{
-			endpoints.MapGet(this.Execute).WithOpenApi();
+			endpoints.MapGet(this.Execute);
 		}
 
-		[EndpointName("GetWeatherForecasts")]
 		public async Task<IEnumerable<WeatherForecast>> Execute(HttpContext httpContext)
 		{
 			WeatherForecast[] forecast = Enumerable.Range(1, 5).Select(index =>
