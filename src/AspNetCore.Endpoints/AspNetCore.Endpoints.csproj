@@ -31,6 +31,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Include="..\..\icon.png" Link="Properties\icon.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
@@ -43,6 +47,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
 	</ItemGroup>
 
 </Project>
