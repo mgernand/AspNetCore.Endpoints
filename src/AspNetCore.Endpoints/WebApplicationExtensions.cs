@@ -7,6 +7,8 @@
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Http;
 	using Microsoft.AspNetCore.Routing;
+	using Microsoft.Extensions.DependencyInjection;
+	using Microsoft.Extensions.Options;
 
 	/// <summary>
 	///		Extension methods for the <see cref="WebApplication"/> type.
@@ -52,8 +54,15 @@
 		{
 			ArgumentNullException.ThrowIfNull(group);
 
+			EndpointsOptions options = app.Services.GetRequiredService<IOptions<EndpointsOptions>>().Value;
+			string globalPrefix = options.EndpointsRoutePrefix?.Trim('/');
+
+			string prefix = string.IsNullOrWhiteSpace(globalPrefix) 
+				? $"/{group.Name.ToLowerInvariant()}" 
+				: $"/{globalPrefix}/{group.Name.ToLowerInvariant()}";
+
 			return app
-				.MapGroup($"/api/{group.Name.ToLowerInvariant()}")
+				.MapGroup(prefix)
 				.WithTags(group.Name)
 				.WithOpenApi();
 		}

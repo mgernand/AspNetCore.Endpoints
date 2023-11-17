@@ -1,6 +1,7 @@
 namespace SampleApplication
 {
 	using MadEyeMatt.AspNetCore.Endpoints;
+	using Microsoft.Extensions.DependencyInjection;
 
 	public static class Program
 	{
@@ -14,6 +15,11 @@ namespace SampleApplication
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
+
+			builder.Services.Configure<EndpointsOptions>(options =>
+			{
+				options.EndpointsRoutePrefix = "endpoints";
+			});
 
 			WebApplication app = builder.Build();
 
