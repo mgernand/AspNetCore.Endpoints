@@ -19,9 +19,9 @@
 		/// <summary>
 		///		Maps all <see cref="Endpoint"/> implementations from registered application parts.
 		/// </summary>
-		/// <param name="app"></param>
-		/// <returns></returns>
-		public static WebApplication MapEndpoints(this WebApplication app)
+		/// <param name="builder">The endpoint route builder to map the endpoints with.</param>
+		/// <returns>The endpoint route builder.</returns>
+		public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder builder)
 		{
 			Type endpointBaseType = typeof(EndpointBase);
 
@@ -40,28 +40,28 @@
 
 			foreach (IGrouping<EndpointGroup, EndpointBase> grouping in endpoints.GroupBy(x => x.Group))
 			{
-				RouteGroupBuilder groupEndpoints = app.MapGroup(grouping.Key);
+				RouteGroupBuilder groupEndpoints = builder.MapGroup(grouping.Key);
 				foreach (EndpointBase endpoint in grouping)
 				{
 					endpoint.Map(groupEndpoints);
 				}
 			}
 
-			return app;
+			return builder;
 		}
 
-		private static RouteGroupBuilder MapGroup(this WebApplication app, EndpointGroup group)
+		private static RouteGroupBuilder MapGroup(this IEndpointRouteBuilder builder, EndpointGroup group)
 		{
 			ArgumentNullException.ThrowIfNull(group);
 
-			EndpointsOptions options = app.Services.GetRequiredService<IOptions<EndpointsOptions>>().Value;
+			EndpointsOptions options = builder.ServiceProvider.GetRequiredService<IOptions<EndpointsOptions>>().Value;
 			string globalPrefix = options.EndpointsRoutePrefix?.Trim('/');
 
 			string prefix = string.IsNullOrWhiteSpace(globalPrefix) 
 				? $"/{group.Name.ToLowerInvariant()}" 
 				: $"/{globalPrefix}/{group.Name.ToLowerInvariant()}";
 
-			RouteGroupBuilder groupBuilder = app
+			RouteGroupBuilder groupBuilder = builder
 				.MapGroup(prefix)
 				.WithTags(group.Name);
 
