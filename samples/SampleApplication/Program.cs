@@ -19,6 +19,10 @@ namespace SampleApplication
 			builder.Services.Configure<EndpointsOptions>(options =>
 			{
 				options.EndpointsRoutePrefix = "endpoints";
+				options.MapGroup = groupBuilder =>
+				{
+					groupBuilder.WithOpenApi();
+				};
 			});
 
 			WebApplication app = builder.Build();

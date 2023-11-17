@@ -63,8 +63,7 @@
 
 			return app
 				.MapGroup(prefix)
-				.WithTags(group.Name)
-				.WithOpenApi();
+				.WithTags(group.Name);
 		}
 	}
 }
