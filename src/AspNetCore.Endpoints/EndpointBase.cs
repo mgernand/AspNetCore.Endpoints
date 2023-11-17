@@ -19,7 +19,7 @@
 		{
 			Type groupType = this.GetType();
 
-			string groupName = groupType.GetCustomAttribute<EndpointGroupAttribute>()?.GroupName.Trim() ?? 
+			string groupName = groupType.GetCustomAttribute<EndpointGroupAttribute>()?.GroupName?.Trim() ?? 
 			                   groupType.Namespace?.Split('.', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Last();
 
 			ArgumentException.ThrowIfNullOrWhiteSpace(groupName);
