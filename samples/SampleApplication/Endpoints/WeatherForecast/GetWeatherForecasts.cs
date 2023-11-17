@@ -4,8 +4,8 @@
 	using MadEyeMatt.AspNetCore.Endpoints;
 
 	[PublicAPI]
-	[EndpointGroup("weather_forecast")]
 	[EndpointName("SomeOtherName")]
+	[EndpointGroupName("weather_forecast")]
 	public sealed class GetWeatherForecasts : EndpointBase
 	{
 		private string[] summaries = new string[]

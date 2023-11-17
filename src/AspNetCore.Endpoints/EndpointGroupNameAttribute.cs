@@ -8,13 +8,13 @@
 	/// </summary>
 	[PublicAPI]
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-	public sealed class EndpointGroupAttribute : Attribute
+	public sealed class EndpointGroupNameAttribute : Attribute
 	{
 		/// <summary>
-		///		Initializes a new instance of the <see cref="EndpointGroupAttribute"/> type.
+		///		Initializes a new instance of the <see cref="EndpointGroupNameAttribute"/> type.
 		/// </summary>
 		/// <param name="groupName"></param>
-		public EndpointGroupAttribute(string groupName)
+		public EndpointGroupNameAttribute(string groupName)
 		{
 			this.GroupName = groupName;
 		}

@@ -61,9 +61,13 @@
 				? $"/{group.Name.ToLowerInvariant()}" 
 				: $"/{globalPrefix}/{group.Name.ToLowerInvariant()}";
 
-			return app
+			RouteGroupBuilder groupBuilder = app
 				.MapGroup(prefix)
 				.WithTags(group.Name);
+
+			options.MapGroup?.Invoke(groupBuilder);
+
+			return groupBuilder;
 		}
 	}
 }

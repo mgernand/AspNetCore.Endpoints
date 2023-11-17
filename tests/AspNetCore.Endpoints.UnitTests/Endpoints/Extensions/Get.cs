@@ -1,12 +1,13 @@
-﻿namespace AspNetCore.Endpoints.UnitTests.Endpoints.Customers
+﻿namespace AspNetCore.Endpoints.UnitTests.Endpoints.Extensions
 {
+	using AspNetCore.Endpoints.UnitTests.Endpoints.Customers;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Endpoints;
 	using Microsoft.AspNetCore.Http;
 	using Microsoft.AspNetCore.Routing;
 
 	[PublicAPI]
-	public sealed class GetCustomer : EndpointBase
+	public sealed class Get : EndpointBase
 	{
 		/// <inheritdoc />
 		public override void Map(IEndpointRouteBuilder endpoints)

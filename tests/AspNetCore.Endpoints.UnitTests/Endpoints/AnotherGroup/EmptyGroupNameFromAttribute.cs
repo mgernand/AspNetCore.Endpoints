@@ -7,7 +7,7 @@
 	using Microsoft.AspNetCore.Routing;
 
 	[PublicAPI]
-	[EndpointGroup(null)]
+	[MadEyeMatt.AspNetCore.Endpoints.EndpointGroupName(null)]
 	public sealed class EmptyGroupNameFromAttribute : EndpointBase
 	{
 		/// <inheritdoc />
