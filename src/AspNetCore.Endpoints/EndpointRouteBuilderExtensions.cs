@@ -1,6 +1,7 @@
 ﻿namespace MadEyeMatt.AspNetCore.Endpoints
 {
 	using System;
+	using System.Diagnostics.CodeAnalysis;
 	using System.Linq;
 	using System.Reflection;
 	using JetBrains.Annotations;
@@ -21,7 +22,7 @@
 		/// <param name="handler">The delegate executed when the endpoint is matched.</param>
 		/// <param name="pattern">The route pattern.</param>
 		/// <returns>A <see cref="RouteHandlerBuilder"/> that can be used to further customize the endpoint.</returns>
-		public static RouteHandlerBuilder MapGet(this IEndpointRouteBuilder endpoints, Delegate handler, string pattern = "")
+		public static RouteHandlerBuilder MapGet(this IEndpointRouteBuilder endpoints, Delegate handler, [StringSyntax("Route")] string pattern = "")
 		{
 			if (handler.Method.IsAnonymous())
 			{
@@ -41,7 +42,7 @@
 		/// <param name="pattern">The route pattern.</param>
 		/// <param name="handler">The delegate executed when the endpoint is matched.</param>
 		/// <returns>A <see cref="RouteHandlerBuilder"/> that can be used to further customize the endpoint.</returns>
-		public static RouteHandlerBuilder MapPost(this IEndpointRouteBuilder endpoints, Delegate handler, string pattern = "")
+		public static RouteHandlerBuilder MapPost(this IEndpointRouteBuilder endpoints, Delegate handler, [StringSyntax("Route")] string pattern = "")
 		{
 			if (handler.Method.IsAnonymous())
 			{
@@ -61,7 +62,7 @@
 		/// <param name="pattern">The route pattern.</param>
 		/// <param name="handler">The delegate executed when the endpoint is matched.</param>
 		/// <returns>A <see cref="RouteHandlerBuilder"/> that can be used to further customize the endpoint.</returns>
-		public static RouteHandlerBuilder MapPut(this IEndpointRouteBuilder endpoints, Delegate handler, string pattern = "")
+		public static RouteHandlerBuilder MapPut(this IEndpointRouteBuilder endpoints, Delegate handler, [StringSyntax("Route")] string pattern = "")
 		{
 			if (handler.Method.IsAnonymous())
 			{
@@ -81,7 +82,7 @@
 		/// <param name="pattern">The route pattern.</param>
 		/// <param name="handler">The <see cref="Delegate" /> executed when the endpoint is matched.</param>
 		/// <returns>A <see cref="RouteHandlerBuilder"/> that can be used to further customize the endpoint.</returns>
-		public static RouteHandlerBuilder MapPatch(this IEndpointRouteBuilder endpoints, Delegate handler, string pattern = "")
+		public static RouteHandlerBuilder MapPatch(this IEndpointRouteBuilder endpoints, Delegate handler, [StringSyntax("Route")] string pattern = "")
 		{
 			if (handler.Method.IsAnonymous())
 			{
@@ -101,7 +102,7 @@
 		/// <param name="pattern">The route pattern.</param>
 		/// <param name="handler">The delegate executed when the endpoint is matched.</param>
 		/// <returns>A <see cref="RouteHandlerBuilder"/> that can be used to further customize the endpoint.</returns>
-		public static RouteHandlerBuilder MapDelete(this IEndpointRouteBuilder endpoints, Delegate handler, string pattern = "")
+		public static RouteHandlerBuilder MapDelete(this IEndpointRouteBuilder endpoints, Delegate handler, [StringSyntax("Route")] string pattern = "")
 		{
 			if (handler.Method.IsAnonymous())
 			{
