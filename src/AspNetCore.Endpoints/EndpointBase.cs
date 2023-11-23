@@ -22,8 +22,6 @@
 			string groupName = groupType.GetCustomAttribute<EndpointGroupNameAttribute>()?.GroupName?.Trim() ?? 
 			                   groupType.Namespace?.Split('.', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Last();
 
-			ArgumentException.ThrowIfNullOrWhiteSpace(groupName);
-
 			this.Group = new EndpointGroup(groupName);
 		}
 

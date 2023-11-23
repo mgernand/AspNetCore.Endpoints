@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFrameworks>net7.0;net8.0</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
 		<Nullable>disable</Nullable>
 		<ImplicitUsings>disable</ImplicitUsings>
@@ -14,9 +14,9 @@
 		<RootNamespace>MadEyeMatt.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 		<IncludeSymbols>false</IncludeSymbols>
 		<Copyright>Copyright © 2023 Matthias Gernand. All rights reserved.</Copyright>
-		<Version>8.0.2</Version>
-		<AssemblyVersion>8.0.2</AssemblyVersion>
-		<FileVersion>8.0.2</FileVersion>
+		<Version>8.0.3</Version>
+		<AssemblyVersion>8.0.3</AssemblyVersion>
+		<FileVersion>8.0.3</FileVersion>
 		<Authors>Matthias Gernand</Authors>
 		<Description>A library that helps in building and configuring object-oriented minimal API endpoints.</Description>
 		<NeutralLanguage>en</NeutralLanguage>

@@ -21,7 +21,9 @@ namespace SampleApplication
 				options.EndpointsRoutePrefix = "endpoints";
 				options.MapGroup = groupBuilder =>
 				{
+#if NET8_0_OR_GREATER
 					groupBuilder.WithOpenApi();
+#endif
 				};
 			});
 
