@@ -17,7 +17,14 @@ namespace MadEyeMatt.AspNetCore.Endpoints
 		/// <param name="groupName"></param>
 		public EndpointGroup(string groupName)
 		{
+#if NET7_0
+			if (string.IsNullOrWhiteSpace(groupName))
+			{
+				throw new ArgumentException(nameof(groupName));
+			}
+#else
 			ArgumentException.ThrowIfNullOrWhiteSpace(groupName);
+#endif
 
 			this.Name = groupName;
 		}

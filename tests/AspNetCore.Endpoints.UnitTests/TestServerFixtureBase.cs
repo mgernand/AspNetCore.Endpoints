@@ -63,7 +63,12 @@
 				client.Dispose();
 			}
 
+#if NET8_0
 			await this.cancellationTokenSource.CancelAsync();
+
+#else
+			this.cancellationTokenSource.Cancel();
+#endif
 			this.cancellationTokenSource.Dispose();
 
 			if (this.app is not null)
