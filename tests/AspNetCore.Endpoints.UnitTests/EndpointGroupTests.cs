@@ -1,5 +1,6 @@
 ﻿namespace AspNetCore.Endpoints.UnitTests
 {
+	using System;
 	using FluentAssertions;
 	using MadEyeMatt.AspNetCore.Endpoints;
 

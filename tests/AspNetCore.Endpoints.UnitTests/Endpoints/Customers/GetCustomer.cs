@@ -1,5 +1,6 @@
 ﻿namespace AspNetCore.Endpoints.UnitTests.Endpoints.Customers
 {
+	using System.Threading.Tasks;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Endpoints;
 	using Microsoft.AspNetCore.Http;
