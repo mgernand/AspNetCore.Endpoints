@@ -1,5 +1,6 @@
 ﻿namespace AspNetCore.Endpoints.UnitTests.Endpoints.AnotherGroup
 {
+	using System.Threading.Tasks;
 	using AspNetCore.Endpoints.UnitTests.Endpoints.Customers;
 	using JetBrains.Annotations;
 	using MadEyeMatt.AspNetCore.Endpoints;

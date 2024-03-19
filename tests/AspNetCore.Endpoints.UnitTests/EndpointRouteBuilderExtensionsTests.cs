@@ -1,5 +1,6 @@
 ﻿namespace AspNetCore.Endpoints.UnitTests
 {
+	using System;
 	using AspNetCore.Endpoints.UnitTests.Endpoints.Extensions;
 	using FluentAssertions;
 

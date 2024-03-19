@@ -10,7 +10,7 @@
 	///		An abstract base class for a single endpoint.
 	/// </summary>
 	[PublicAPI]
-	public abstract class EndpointBase
+	public abstract class EndpointBase : IEndpoint
 	{
 		/// <summary>
 		///		Initializes a new instance of the <see cref="EndpointBase"/> type.

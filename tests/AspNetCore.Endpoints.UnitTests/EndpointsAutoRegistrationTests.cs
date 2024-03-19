@@ -1,9 +1,12 @@
 ﻿namespace AspNetCore.Endpoints.UnitTests
 {
+	using System;
 	using FluentAssertions;
 	using MadEyeMatt.AspNetCore.Endpoints;
 	using Microsoft.AspNetCore.Builder;
 	using System.Net;
+	using System.Net.Http;
+	using System.Threading.Tasks;
 
 	[TestFixture]
 	public class EndpointsAutoRegistrationTests : TestServerFixtureBase

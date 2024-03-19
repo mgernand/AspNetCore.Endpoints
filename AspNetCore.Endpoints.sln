@@ -10,16 +10,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".items", ".items", "{241433
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EDEC7D8F-4C6F-4DE3-8022-17A2A23AB18B}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{24F9EFE8-010B-48D9-B5D2-EF194BDEAC31}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9BE8804F-BCC0-48CF-9AEC-ED97414B0C78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Endpoints", "src\AspNetCore.Endpoints\AspNetCore.Endpoints.csproj", "{78252EC6-A939-4FB4-9B4B-21AF159CECCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Endpoints", "src\AspNetCore.Endpoints\AspNetCore.Endpoints.csproj", "{78252EC6-A939-4FB4-9B4B-21AF159CECCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Endpoints.UnitTests", "tests\AspNetCore.Endpoints.UnitTests\AspNetCore.Endpoints.UnitTests.csproj", "{02A14311-49E7-48E2-AE3C-31161F8455C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Endpoints.UnitTests", "tests\AspNetCore.Endpoints.UnitTests\AspNetCore.Endpoints.UnitTests.csproj", "{02A14311-49E7-48E2-AE3C-31161F8455C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication", "samples\SampleApplication\SampleApplication.csproj", "{CDAC8FF5-9AEA-4D5A-8934-02E01A8B9029}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApplication", "samples\SampleApplication\SampleApplication.csproj", "{CDAC8FF5-9AEA-4D5A-8934-02E01A8B9029}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
