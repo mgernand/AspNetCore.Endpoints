@@ -4,8 +4,7 @@
 	using MadEyeMatt.AspNetCore.Endpoints;
 
 	[PublicAPI]
-	[EndpointName("SomeOtherName")]
-	[EndpointGroupName("weather_forecast")]
+	[EndpointName("Weather")]
 	public sealed class GetWeatherForecasts : EndpointBase
 	{
 		private string[] summaries = new string[]
@@ -16,7 +15,7 @@
 		/// <inheritdoc />
 		public override void Map(IEndpointRouteBuilder endpoints)
 		{
-			endpoints.MapGet(this.Execute);
+			endpoints.MapGet(this.Execute, "weather");
 		}
 
 		public async Task<IEnumerable<WeatherForecast>> Execute(HttpContext httpContext)

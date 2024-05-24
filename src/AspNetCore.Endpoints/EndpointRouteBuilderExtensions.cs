@@ -5,6 +5,7 @@
 	using System.Diagnostics.CodeAnalysis;
 	using System.Linq;
 	using System.Reflection;
+	using System.Runtime.CompilerServices;
 	using JetBrains.Annotations;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Http;
@@ -38,13 +39,14 @@
 				endpoints.Add(endpoint);
 			}
 
-			foreach (IGrouping<EndpointGroup, EndpointBase> grouping in endpoints.GroupBy(x => x.Group))
+			EndpointsOptions options = builder.ServiceProvider.GetRequiredService<IOptions<EndpointsOptions>>().Value;
+			string globalPrefix = options.EndpointsRoutePrefix?.Trim('/') ?? "api";
+
+			RouteGroupBuilder groupBuilder = builder.MapGroup(globalPrefix);
+
+			foreach (EndpointBase endpoint in endpoints)
 			{
-				RouteGroupBuilder groupEndpoints = builder.MapGroup(grouping.Key);
-				foreach (EndpointBase endpoint in grouping)
-				{
-					endpoint.Map(groupEndpoints);
-				}
+				endpoint.Map(groupBuilder);
 			}
 
 			return builder;
@@ -67,7 +69,8 @@
 
 			return endpoints
 				.MapGet(pattern, handler)
-				.WithName(handler.Method.GetEndpointName());
+				.WithName(handler)
+				.WithTags(handler);
 		}
 
 		/// <summary>
@@ -87,7 +90,8 @@
 
 			return endpoints
 				.MapPost(pattern, handler)
-				.WithName(handler.Method.GetEndpointName());
+				.WithName(handler)
+				.WithTags(handler);
 		}
 
 		/// <summary>
@@ -107,7 +111,8 @@
 
 			return endpoints
 				.MapPut(pattern, handler)
-				.WithName(handler.Method.GetEndpointName());
+				.WithName(handler)
+				.WithTags(handler);
 		}
 
 		/// <summary>
@@ -127,7 +132,8 @@
 
 			return endpoints
 				.MapPatch(pattern, handler)
-				.WithName(handler.Method.GetEndpointName());
+				.WithName(handler)
+				.WithTags(handler);
 		}
 
 		/// <summary>
@@ -147,27 +153,8 @@
 
 			return endpoints
 				.MapDelete(pattern, handler)
-				.WithName(handler.Method.GetEndpointName());
-		}
-
-		private static RouteGroupBuilder MapGroup(this IEndpointRouteBuilder builder, EndpointGroup group)
-		{
-			ArgumentNullException.ThrowIfNull(group);
-
-			EndpointsOptions options = builder.ServiceProvider.GetRequiredService<IOptions<EndpointsOptions>>().Value;
-			string globalPrefix = options.EndpointsRoutePrefix?.Trim('/');
-
-			string prefix = string.IsNullOrWhiteSpace(globalPrefix)
-				? $"/{group.Name.ToLowerInvariant()}"
-				: $"/{globalPrefix}/{group.Name.ToLowerInvariant()}";
-
-			RouteGroupBuilder groupBuilder = builder
-				.MapGroup(prefix)
-				.WithTags(group.Name);
-
-			options.MapGroup?.Invoke(groupBuilder);
-
-			return groupBuilder;
+				.WithName(handler)
+				.WithTags(handler);
 		}
 
 		private static bool IsAnonymous(this MethodInfo method)
@@ -176,14 +163,25 @@
 			return method.Name.Any(invalidChars.Contains);
 		}
 
-		private static string GetEndpointName(this MethodInfo method)
+		private static RouteHandlerBuilder WithName(this RouteHandlerBuilder builder, Delegate handler)
 		{
-			Type declaringType = method.DeclaringType;
+			EndpointNameAttribute endpointNameAttribute = handler.Method.DeclaringType?.GetCustomAttribute<EndpointNameAttribute>();
+			string name = endpointNameAttribute is not null
+				? endpointNameAttribute.Name
+				: handler.Method.DeclaringType?.Name ?? "Endpoints";
 
-			ArgumentNullException.ThrowIfNull(declaringType);
+			return builder.WithName(name);
+		}
 
-			string name = declaringType.GetCustomAttribute<EndpointNameAttribute>()?.Name ?? declaringType.Name;
-			return name;
+		private static RouteHandlerBuilder WithTags(this RouteHandlerBuilder builder, Delegate handler)
+		{
+			EndpointGroupAttribute endpointGroupAttribute = handler.Method.DeclaringType?.GetCustomAttribute<EndpointGroupAttribute>();
+			if (endpointGroupAttribute is not null)
+			{
+				builder = builder.WithTags(endpointGroupAttribute.Group);
+			}
+
+			return builder;
 		}
 	}
 }

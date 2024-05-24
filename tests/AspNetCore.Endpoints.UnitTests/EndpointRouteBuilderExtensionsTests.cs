@@ -3,6 +3,7 @@
 	using System;
 	using AspNetCore.Endpoints.UnitTests.Endpoints.Extensions;
 	using FluentAssertions;
+	using NUnit.Framework;
 
 	public class EndpointRouteBuilderExtensionsTests
 	{

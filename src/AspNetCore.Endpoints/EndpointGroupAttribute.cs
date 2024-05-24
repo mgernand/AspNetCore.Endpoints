@@ -8,20 +8,22 @@
 	/// </summary>
 	[PublicAPI]
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-	public sealed class EndpointGroupNameAttribute : Attribute
+	public sealed class EndpointGroupAttribute : Attribute
 	{
 		/// <summary>
-		///		Initializes a new instance of the <see cref="EndpointGroupNameAttribute"/> type.
+		///		Initializes a new instance of the <see cref="EndpointGroupAttribute"/> type.
 		/// </summary>
-		/// <param name="groupName"></param>
-		public EndpointGroupNameAttribute(string groupName)
+		/// <param name="group"></param>
+		public EndpointGroupAttribute(string group)
 		{
-			this.GroupName = groupName;
+			ArgumentException.ThrowIfNullOrEmpty(group);
+
+			this.Group = group;
 		}
 
 		/// <summary>
 		///		Gets the group name.
 		/// </summary>
-		public string GroupName { get; }
+		public string Group { get; }
 	}
 }

@@ -8,6 +8,7 @@
 	using MadEyeMatt.AspNetCore.Endpoints;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.DependencyInjection;
+	using NUnit.Framework;
 
 	[TestFixture("endpoints")]
 	[TestFixture("")]
@@ -45,7 +46,7 @@
 		{
 			HttpClient client = this.CreateClient();
 
-			string path = $"{this.prefix}/customers";
+			string path = $"{this.prefix ?? "api"}/customers";
 
 			HttpResponseMessage response = await client.GetAsync(path.TrimStart('/'));
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -59,7 +60,7 @@
 		{
 			HttpClient client = this.CreateClient();
 
-			string path = $"{this.prefix}/customers/20ac7bae93464ade8803ec34f0cf0b5b";
+			string path = $"{this.prefix ?? "api"}/customers/20ac7bae93464ade8803ec34f0cf0b5b";
 
 			HttpResponseMessage response = await client.GetAsync(path.TrimStart('/'));
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
