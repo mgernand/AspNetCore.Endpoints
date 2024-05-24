@@ -15,7 +15,7 @@ the endppoint name id the class name of the endpoint.
 
 This default conventions can be overridden by using attributes athe endpoints class level.
 
-- ```[EndpointGroupName("GroupName")]```
+- ```[EndpointGroup("GroupName")]```
     
     The name of the group this endpoint belongs to.
 

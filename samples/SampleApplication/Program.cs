@@ -9,6 +9,9 @@ namespace SampleApplication
 		{
 			WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+			// Add the endpoints as services.
+			builder.Services.AddEndpoints();
+
 			// Add services to the container.
 			builder.Services.AddAuthorization();
 

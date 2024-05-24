@@ -12,14 +12,15 @@
 	using Microsoft.AspNetCore.TestHost;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
+	using NUnit.Framework;
 
 	public abstract class TestServerFixtureBase
 	{
 		private readonly CancellationTokenSource cancellationTokenSource;
 		private readonly List<HttpClient> clients;
 
-		private WebApplication? app;
-		private TestServer? server;
+		private WebApplication app;
+		private TestServer server;
 
 		protected TestServerFixtureBase()
 		{

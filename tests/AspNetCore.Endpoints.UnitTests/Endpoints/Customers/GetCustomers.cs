@@ -7,13 +7,14 @@
 	using Microsoft.AspNetCore.Routing;
 
 	[PublicAPI]
+	[EndpointGroup("Customers")]
 	public sealed class GetCustomers : EndpointBase
 	{
 		/// <inheritdoc />
 		public override void Map(IEndpointRouteBuilder endpoints)
 		{
 			endpoints
-				.MapGet(this.Execute)
+				.MapGet(this.Execute, "customers")
 				.Produces<Customer>(200, "application/json");
 		}
 

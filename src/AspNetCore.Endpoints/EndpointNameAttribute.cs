@@ -13,10 +13,12 @@
 		/// <summary>
 		///		Initializes a new instance of the <see cref="EndpointNameAttribute"/> type.
 		/// </summary>
-		/// <param name="handlerName"></param>
-		public EndpointNameAttribute(string handlerName)
+		/// <param name="name"></param>
+		public EndpointNameAttribute(string name)
 		{
-			this.Name = handlerName;
+			ArgumentException.ThrowIfNullOrEmpty(name);
+
+			this.Name = name;
 		}
 
 		/// <summary>
