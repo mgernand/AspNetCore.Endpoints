@@ -5,7 +5,6 @@
 	using System.Diagnostics.CodeAnalysis;
 	using System.Linq;
 	using System.Reflection;
-	using System.Runtime.CompilerServices;
 	using JetBrains.Annotations;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Http;
@@ -159,7 +158,7 @@
 
 		private static bool IsAnonymous(this MethodInfo method)
 		{
-			char[] invalidChars = new char[] { '<', '>' };
+			char[] invalidChars = ['<', '>'];
 			return method.Name.Any(invalidChars.Contains);
 		}
 
