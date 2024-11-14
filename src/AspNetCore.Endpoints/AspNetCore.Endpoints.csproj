@@ -23,10 +23,4 @@
 		<PackageReference Include="JetBrains.Annotations" Version="2024.3.0" PrivateAssets="All" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
-	  <PackageReference Include="Microsoft.AspNetCore.OpenApi">
-	    <Version>9.0.0</Version>
-	  </PackageReference>
-	</ItemGroup>
-
 </Project>
