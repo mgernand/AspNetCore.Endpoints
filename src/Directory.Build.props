@@ -39,7 +39,7 @@
 	<PropertyGroup>
 		<Product>AspNetCore.Endpoints</Product>
 		<AssemblyTitle>AspNetCore.Endpoints</AssemblyTitle>
-		<Copyright>Copyright © 2023-2024 Matthias Gernand. All rights reserved.</Copyright>
+		<Copyright>Copyright © 2023-2025 Matthias Gernand. All rights reserved.</Copyright>
 	</PropertyGroup>
 
 </Project>
