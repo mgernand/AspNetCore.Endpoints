@@ -2,6 +2,8 @@
 
 A library that helps in building and configuring object-oriented minimal API endpoints.
 
+## This repository was moved to https://codeberg.org/mgernand/AspNetCore.Endpoints
+
 Mapping every single minimal API endpoint in the ```Program.cs``` file can become 
 confusing very fast. For applications hosting a larger amount of endpoints this 
 library allows to implement an endpoint in a structured way. This endpoints will
